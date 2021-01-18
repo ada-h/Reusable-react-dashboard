@@ -1,6 +1,6 @@
   import React, {Component} from 'react'
   import {Link} from 'react-router-dom'
-  import Editor from './../Reusables/editor/Quill'
+  import Editor from '../reusables/editor/Quill'
 
 class AddPost extends Component{
   constructor(){

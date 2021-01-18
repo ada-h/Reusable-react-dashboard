@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {FormInput} from '../Reusables/inputs/FormInput'
-import Button from '../Reusables/buttons/Button'
-import { CheckBox } from '../Reusables';
+import {FormInput} from '../reusables/inputs/FormInput'
+import Button from '../reusables/buttons/Button'
+import { CheckBox } from '../reusables';
 
 class Forms extends Component{
 

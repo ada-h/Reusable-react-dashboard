@@ -1,6 +1,6 @@
 import {
     CHANGE_ACTIVE
-} from './Types'
+} from './types'
 
 export const changeActive = (id) => {
     return{

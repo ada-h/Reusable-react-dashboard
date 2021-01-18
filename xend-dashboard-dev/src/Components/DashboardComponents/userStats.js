@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {LineChart} from '../Reusables/';
+import {LineChart} from '../reusables';
 
 class UserStats extends Component{
     render() {

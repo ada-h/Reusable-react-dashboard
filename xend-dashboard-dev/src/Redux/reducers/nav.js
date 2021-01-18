@@ -1,6 +1,6 @@
 import {
     CHANGE_ACTIVE
-} from '../actions/Types'
+} from '../actions/types'
 
 const initialState = {
     active: false,
