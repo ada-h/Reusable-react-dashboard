@@ -1,0 +1,5290 @@
+{
+	"info": {
+		"_postman_id": "41a385dc-f40b-4019-ba89-d5d4cfb5f079",
+		"name": "Laravel Api Jwt Boilerplate",
+		"description": "This application is designed as a generic boilerplate for a minor api project using laravel as a framework.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "black",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "black@gmail.com",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "password",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "08021415578",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "I am a human being",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "birth_date",
+									"value": "0000-04-17",
+									"description": "Optional (0000-month-date)  (0000-m-d)",
+									"type": "text"
+								},
+								{
+									"key": "birth_year",
+									"value": "1997",
+									"description": "Optional (year) (Y)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						},
+						"description": "Register a new user"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "blue@gmail.com",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "blueblue",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Log a user in"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "eeb55784-1161-46fc-902f-72e94b0222a8",
+								"exec": [
+									"pm.environment.set(\"access_expires\", \"\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/auth/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						},
+						"description": "Log a user out"
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "black@gmail.com",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "reset_form_link",
+									"value": "http://{{url}}/api/reset-link",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/forgot",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"forgot"
+							]
+						},
+						"description": "Reset a user's password phase 1, this send's a password reset token and form with link to user."
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "black@gmail.com",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "lQf5xwqSmxSIyT22OVfe",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "new_password",
+									"value": "thisisanewpassword",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "new_password_confirmation",
+									"value": "thisisanewpassword",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/reset",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"reset"
+							]
+						},
+						"description": "Reset a user's password phase 2, this accepts a password reset token and new password from user."
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "old_password",
+									"value": "blueblue",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "new_password",
+									"value": "thisisanewpassword",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "new_password_confirmation",
+									"value": "thisisanewpassword",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/change",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"change"
+							]
+						},
+						"description": "Change a user's password"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify User Email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/verify?email=blue@gmail.com&token=9b3b7bb4453551002f948e9899d28d12",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"verify"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "blue@gmail.com",
+									"description": "Required"
+								},
+								{
+									"key": "token",
+									"value": "9b3b7bb4453551002f948e9899d28d12",
+									"description": "Required"
+								}
+							]
+						},
+						"description": "Submit token send to users email to verify users email"
+					},
+					"response": []
+				},
+				{
+					"name": "Check User Details",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						},
+						"description": "Check if a user is logged in"
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/refresh",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"refresh"
+							]
+						},
+						"description": "Get a new token for logged in user"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Auth Model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"test"
+							]
+						},
+						"description": "Test if the auth model is responsive"
+					},
+					"response": []
+				}
+			],
+			"description": "Application Authorization",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7d352e29-9a31-4da1-aa14-c927df86e3f0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "675e6da0-04fd-4eb2-9a15-ed26dc95e2e8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Socialite",
+			"item": [
+				{
+					"name": "Login Via Facebook",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/socialite/facebook",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"socialite",
+								"facebook"
+							]
+						},
+						"description": "login to the application via facebook"
+					},
+					"response": []
+				},
+				{
+					"name": "Login Via Facebook Callback",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/socialite/facebook/callback?code=AQDwb9jAHITb5R_Gvk4Rx1hg9EFJ0sVDR8VHkLgFuOLKJebOi03mLGr3xOk7UL-_gbnpuW-UB4zalhHXuvi_S_f_1Mcs-2eekVl3VCjmiScESn4bhGZcmelTHhcIt7MLyLcl9hSyH3f-70B7oPYdw1kWZYyHWP8TBQoYt1qvWPU5PACHPlBocG9daxa7lJ2EeY8tkzpzvhjYsc02ScIIYSBWLenYrYyyOxwEysr1VsHLNKvZDa479T5wg7pxTlbY1vRy5Ugsz0AxCez4y3I_kXwlQ2PjV9G0nNVVMJSinOU6i1QaE2iv5h8I3OCrQp2ZEuFLxHU0CEz3p7ilEONP9D5c%23_=_",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"socialite",
+								"facebook",
+								"callback"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "AQDwb9jAHITb5R_Gvk4Rx1hg9EFJ0sVDR8VHkLgFuOLKJebOi03mLGr3xOk7UL-_gbnpuW-UB4zalhHXuvi_S_f_1Mcs-2eekVl3VCjmiScESn4bhGZcmelTHhcIt7MLyLcl9hSyH3f-70B7oPYdw1kWZYyHWP8TBQoYt1qvWPU5PACHPlBocG9daxa7lJ2EeY8tkzpzvhjYsc02ScIIYSBWLenYrYyyOxwEysr1VsHLNKvZDa479T5wg7pxTlbY1vRy5Ugsz0AxCez4y3I_kXwlQ2PjV9G0nNVVMJSinOU6i1QaE2iv5h8I3OCrQp2ZEuFLxHU0CEz3p7ilEONP9D5c#_=_",
+									"description": "Required"
+								}
+							]
+						},
+						"description": "login to the application via facebook, if you have the authorization token. mostly for SDK's"
+					},
+					"response": []
+				},
+				{
+					"name": "Login Via Linkedin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/socialite/linkedin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"socialite",
+								"linkedin"
+							]
+						},
+						"description": "login to the application via linkedin"
+					},
+					"response": []
+				},
+				{
+					"name": "Login Via Linkedin Callback",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/socialite/linkedin/callback?code",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"socialite",
+								"linkedin",
+								"callback"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": null,
+									"description": "Required"
+								}
+							]
+						},
+						"description": "login to the application via linkedin, if you have the authorization token. mostly for SDK's"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Socialite Model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/socialite/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"socialite",
+								"test"
+							]
+						},
+						"description": "Test if the socialite model is responsive"
+					},
+					"response": []
+				}
+			],
+			"description": "Login with third party providers such as facebook, linkedin and github etc",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/user/index?properties=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"index"
+							],
+							"query": [
+								{
+									"key": "properties",
+									"value": "1",
+									"description": "Optional"
+								},
+								{
+									"key": "deleted",
+									"value": "1",
+									"description": "Optional",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all registered users"
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "0f1f47bf-2b18-4403-a191-d955643f64d9",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "blue@gmail.com",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "blue",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "birth_date",
+									"value": "0000-04-17",
+									"description": "Optional (0000-month-date)  (0000-m-d)",
+									"type": "text"
+								},
+								{
+									"key": "birth_year",
+									"value": "1997",
+									"description": "Optional (year) (Y)",
+									"type": "text"
+								},
+								{
+									"key": "email_verified_at",
+									"value": "",
+									"description": "Optional (year-month-date hours:minutes)  (y-m-d H:i)",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/filter/index",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"filter",
+								"index"
+							]
+						},
+						"description": "Filter users (at least one parameter required)"
+					},
+					"response": []
+				},
+				{
+					"name": "Search Users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "search",
+									"value": "blue@gmail.com",
+									"description": "Required (Date Formats Supported)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/search/index",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"search",
+								"index"
+							]
+						},
+						"description": "Search for a user by their details"
+					},
+					"response": []
+				},
+				{
+					"name": "Show User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/user/show?user_id=0f1f47bf-2b18-4403-a191-d955643f64d9",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"show"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "0f1f47bf-2b18-4403-a191-d955643f64d9",
+									"description": "Required"
+								}
+							]
+						},
+						"description": "Show a specific user"
+					},
+					"response": []
+				},
+				{
+					"name": "Show User Roles And Ablities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/user/roles?user_id=db97b8cd-c610-43d4-9359-7f085f274d20",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"roles"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "db97b8cd-c610-43d4-9359-7f085f274d20",
+									"description": "Required"
+								}
+							]
+						},
+						"description": "Show a specific user with their roles and ablities"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit A User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "f80f2d1e-673a-42bc-889a-b6233d7df174",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0605453342",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "i used to be human but now i am robot",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "birth_date",
+									"value": "0000-04-17",
+									"description": "Optional (0000-month-date)  (0000-m-d)",
+									"type": "text"
+								},
+								{
+									"key": "birth_year",
+									"value": "1997",
+									"description": "Optional (year) (Y)",
+									"type": "text"
+								},
+								{
+									"key": "photos[]",
+									"description": "Accepts Only 'jpg','jpeg','png','gif','bmp'  ( Optional) Max:1",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								},
+								{
+									"key": "portraits[]",
+									"value": "data:image/jpeg;base64,/9j/4AAQo....",
+									"description": "Accepts Only base64 'jpg','jpeg','png','gif','bmp'  ( Optional) Max:1 ",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"update"
+							]
+						},
+						"description": "Edit a user submitted details"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete A User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "0d43c982-f646-48cd-8dac-8922625ffe24",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"delete"
+							]
+						},
+						"description": "Delete a registered user"
+					},
+					"response": []
+				},
+				{
+					"name": "Block User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "1b04f8a0-5e22-4676-b339-c53bf9fad160",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/block",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"block"
+							]
+						},
+						"description": "Disable a user from accessing the application"
+					},
+					"response": []
+				},
+				{
+					"name": "Unblock User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "1b04f8a0-5e22-4676-b339-c53bf9fad160",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/unblock",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"unblock"
+							]
+						},
+						"description": "Enable a blocked user to access the application"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Users Model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/user/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"test"
+							]
+						},
+						"description": "Test if the user model is responsive"
+					},
+					"response": []
+				}
+			],
+			"description": "Manage Application Users ",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c742bfec-4eda-4b5b-9643-a3c1532ca4b3",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f70a0dd-c696-4898-ba82-d4ebc94b69a0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Cache",
+			"item": [
+				{
+					"name": "Get all cached data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/cache/index",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"cache",
+								"index"
+							]
+						},
+						"description": "Get all the data stored in cache by the application"
+					},
+					"response": []
+				},
+				{
+					"name": "Clear all cached data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "clear_list[]",
+									"value": "ROLES_ABILITIES",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "clear_list[]",
+									"value": "CONST",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/cache/clear",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"cache",
+								"clear"
+							]
+						},
+						"description": "Clear a specific set of data stored in cache by the application"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Cache Model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/cache/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"cache",
+								"test"
+							]
+						},
+						"description": "Test if the cache model is responsive"
+					},
+					"response": []
+				}
+			],
+			"description": "View and control cache content",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "Assign Role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "db97b8cd-c610-43d4-9359-7f085f274d20",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "2",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "scope name",
+									"description": "Optional",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/role/assign",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"role",
+								"assign"
+							]
+						},
+						"description": "Assign an avaliable role to a user"
+					},
+					"response": []
+				},
+				{
+					"name": "Retract Role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "db97b8cd-c610-43d4-9359-7f085f274d20",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "2",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/role/retract",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"role",
+								"retract"
+							]
+						},
+						"description": "Retract a role from a user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Roles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/role/index?properties=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"role",
+								"index"
+							],
+							"query": [
+								{
+									"key": "properties",
+									"value": "1",
+									"description": "Optional"
+								},
+								{
+									"key": "deleted",
+									"value": "1",
+									"description": "Optional",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all application available roles"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Roles Model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/role/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"role",
+								"test"
+							]
+						},
+						"description": "Test if the roles model is responsive"
+					},
+					"response": []
+				},
+				{
+					"name": "Show A Role",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/role/show?role_id=4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"role",
+								"show"
+							],
+							"query": [
+								{
+									"key": "role_id",
+									"value": "4",
+									"description": "Required"
+								}
+							]
+						},
+						"description": "Get a single application available role"
+					},
+					"response": []
+				},
+				{
+					"name": "Store A Role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "do_what_ever_i_want",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "label",
+									"value": "Do What Ever I Want",
+									"description": "Required",
+									"type": "text"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/role/store",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"role",
+								"store"
+							]
+						},
+						"description": "Create a new application role"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit A Role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "role_id",
+									"value": "5",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "do_what_ever_i_want",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "label",
+									"value": "Do What Ever I Want In Application",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/role/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"role",
+								"update"
+							]
+						},
+						"description": "Update an application role"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete A Role",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "role_id",
+									"value": "5",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/role/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"role",
+								"delete"
+							]
+						},
+						"description": "Delete an application role"
+					},
+					"response": []
+				}
+			],
+			"description": "Manage User Roles For The Application",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bc9ff4cb-b2b7-47e5-8423-3bac4a8c6123",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "570bab47-b447-4656-9d12-8c4c911d13a3",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Ability",
+			"item": [
+				{
+					"name": "Assign Ability",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ability_id",
+									"value": "2",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "2",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/ability/assign",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ability",
+								"assign"
+							]
+						},
+						"description": "Assign an avaliable ability to a role"
+					},
+					"response": []
+				},
+				{
+					"name": "Retract Ability",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ability_id",
+									"value": "2",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "2",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/ability/retract",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ability",
+								"retract"
+							]
+						},
+						"description": "Retract an ability from a role"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Ability",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/ability/index?properties=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ability",
+								"index"
+							],
+							"query": [
+								{
+									"key": "properties",
+									"value": "1",
+									"description": "Optional"
+								},
+								{
+									"key": "deleted",
+									"value": "1",
+									"description": "Optional",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all application available abilities"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Abilities Model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/ability/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ability",
+								"test"
+							]
+						},
+						"description": "Test if the ability model is responsive"
+					},
+					"response": []
+				},
+				{
+					"name": "Show An Ability",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/ability/show?ability_id=59",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ability",
+								"show"
+							],
+							"query": [
+								{
+									"key": "ability_id",
+									"value": "59",
+									"description": "Required"
+								}
+							]
+						},
+						"description": "Get a single application available ability"
+					},
+					"response": []
+				},
+				{
+					"name": "Store An Ability",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "spy_on_user",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "label",
+									"value": "Spy On User",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/ability/store",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ability",
+								"store"
+							]
+						},
+						"description": "Create a new application ability"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit An Ability",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ability_id",
+									"value": "59",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "spy_on_user",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "label",
+									"value": "Spy On User Right Now",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/ability/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ability",
+								"update"
+							]
+						},
+						"description": "Update an application ability"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete An Ability",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ability_id",
+									"value": "59",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/ability/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"ability",
+								"delete"
+							]
+						},
+						"description": "Delete an application ability"
+					},
+					"response": []
+				}
+			],
+			"description": "Manage Role Abilities For The Application",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "83e2eca3-b3f6-492a-91f7-62f87aa3f886",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4b722147-a861-440e-b3a5-42b6b4215328",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Educational Qualification",
+			"item": [
+				{
+					"name": "Get All Educational Qualification",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/education/index?properties=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"education",
+								"index"
+							],
+							"query": [
+								{
+									"key": "properties",
+									"value": "1",
+									"description": "Optional"
+								},
+								{
+									"key": "deleted",
+									"value": "1",
+									"description": "Optional",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all application available educational qualification"
+					},
+					"response": []
+				},
+				{
+					"name": "Store An Educational Qualification",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "PhD",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "Doctor of Philosophy",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/education/store",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"education",
+								"store"
+							]
+						},
+						"description": "Create a new educational qualification for the application"
+					},
+					"response": []
+				},
+				{
+					"name": "Show An Educational Qualification",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/education/show?id=4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"education",
+								"show"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4",
+									"description": "Required"
+								}
+							]
+						},
+						"description": "Show a specific educational qualification"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit An Educational Qualification",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "2",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "B.Sc",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "Advanced",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/education/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"education",
+								"update"
+							]
+						},
+						"description": "Edit an educational qualification details"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete An Educational Qualification",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "5",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/education/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"education",
+								"delete"
+							]
+						},
+						"description": "Delete an educational qualification"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Educational Qualification Model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/education/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"education",
+								"test"
+							]
+						},
+						"description": "Test if the educational qualification model is responsive"
+					},
+					"response": []
+				}
+			],
+			"description": "Manage Educational Qualification Listing",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0728821c-e73d-40f0-8319-e9602fc72e51",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "8f35737f-b243-408b-bb60-3e9aeb5e297c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Job Category",
+			"item": [
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/job/category/index?properties=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"job",
+								"category",
+								"index"
+							],
+							"query": [
+								{
+									"key": "properties",
+									"value": "1",
+									"description": "Optional"
+								},
+								{
+									"key": "deleted",
+									"value": "1",
+									"description": "Optional",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all application categories"
+					},
+					"response": []
+				},
+				{
+					"name": "Store A Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Gaming",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "Skilled",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/job/category/store",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"job",
+								"category",
+								"store"
+							]
+						},
+						"description": "Create a new category for the application"
+					},
+					"response": []
+				},
+				{
+					"name": "Show A Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/job/category/show?id=5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"job",
+								"category",
+								"show"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "5",
+									"description": "Required"
+								}
+							]
+						},
+						"description": "Show a specific category"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit A Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "5",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Running",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "Skilled",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/job/category/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"job",
+								"category",
+								"update"
+							]
+						},
+						"description": "Edit category details"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete A Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "5",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/job/category/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"job",
+								"category",
+								"delete"
+							]
+						},
+						"description": "Delete a category"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Category Model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/job/category/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"job",
+								"category",
+								"test"
+							]
+						},
+						"description": "Test if the category model is responsive"
+					},
+					"response": []
+				}
+			],
+			"description": "Manage Category Listing",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "28d4ecdb-ccdd-4796-916d-0222a9e1bd93",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "85751290-0659-4a57-b73b-fcc7408392c1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Human Verification",
+			"item": [
+				{
+					"name": "Get All Human Verification",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/verification/index?properties=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"verification",
+								"index"
+							],
+							"query": [
+								{
+									"key": "properties",
+									"value": "1",
+									"description": "Optional"
+								},
+								{
+									"key": "deleted",
+									"value": "1",
+									"description": "Optional",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all available Human Verification"
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Human Verifications",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "verification_date",
+									"value": "2020-11-05",
+									"description": "Optional (year-month-date) (YYYY-MM-DD)",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "blue",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "blue@gmail.com",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "09012328433",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "verified_by",
+									"value": "",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "verifier_name",
+									"value": "",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "verifier_email",
+									"value": "",
+									"description": "Optional",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/verification/filter/index",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"verification",
+								"filter",
+								"index"
+							]
+						},
+						"description": "Filter human verifications (at least one parameter required)"
+					},
+					"response": []
+				},
+				{
+					"name": "Search Human Verification",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "search",
+									"value": "2020-11-05",
+									"description": "Required (Date Formats Supported)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/verification/search/index",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"verification",
+								"search",
+								"index"
+							]
+						},
+						"description": "Search for a human verification by their details"
+					},
+					"response": []
+				},
+				{
+					"name": "Store A Human Verification",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "verification_date",
+									"value": "2020-11-05",
+									"description": "Required (year-month-date) (YYYY-MM-DD)",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "blue",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "blue@gmail.com",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "09012328433",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "portraits[]",
+									"value": "data:image/jpeg;base64,/9j/4AAQo....",
+									"description": "Accepts Only 'jpg','jpeg','png','gif','bmp'  (Optional) Max:8",
+									"type": "text"
+								},
+								{
+									"key": "photos[]",
+									"description": "Accepts Only 'jpg','jpeg','png','gif','bmp'  (Optional) Max:8",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/verification/store",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"verification",
+								"store"
+							]
+						},
+						"description": "Create a new human verification for a user"
+					},
+					"response": []
+				},
+				{
+					"name": "Show A Human Verification",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/verification/show?user_id=160b39c4-005b-4560-ae74-791e04403b4f",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"verification",
+								"show"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "160b39c4-005b-4560-ae74-791e04403b4f",
+									"description": "Required (search by user id)"
+								}
+							]
+						},
+						"description": "Show a specific human verification"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit A Human Verification",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "160b39c4-005b-4560-ae74-791e04403b4f",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "verification_date",
+									"value": "2020-11-05",
+									"description": "Required (year-month-date) (YYYY-MM-DD)",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "blue",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "blue@gmail.com",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "09012328433",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "portraits[]",
+									"value": "data:image/jpeg;base64,/9j/4AAQo....",
+									"description": "Accepts Only 'jpg','jpeg','png','gif','bmp'  (Optional) Max:8",
+									"type": "text"
+								},
+								{
+									"key": "photos[]",
+									"description": "Accepts Only 'jpg','jpeg','png','gif','bmp'  (Optional) Max:8",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/verification/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"verification",
+								"update"
+							]
+						},
+						"description": "Edit a human verification submitted details"
+					},
+					"response": []
+				},
+				{
+					"name": "Reject Human Verification",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "160b39c4-005b-4560-ae74-791e04403b4f",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/verification/reject",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"verification",
+								"reject"
+							]
+						},
+						"description": "Reject submitted human verification details"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Human Verification",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "160b39c4-005b-4560-ae74-791e04403b4f",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/verification/verify",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"verification",
+								"verify"
+							]
+						},
+						"description": "Verify submitted human verification details"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete A Human Verification",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "160b39c4-005b-4560-ae74-791e04403b4f",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/verification/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"verification",
+								"delete"
+							]
+						},
+						"description": "Delete a human verification"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Human Verification Model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/verification/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"verification",
+								"test"
+							]
+						},
+						"description": "Test if the human verification model is responsive"
+					},
+					"response": []
+				}
+			],
+			"description": "Manage Human Verification Process",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1ca51b89-2f0a-43a7-a1b7-315791ad8a2b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "460c371b-7ecb-464c-b4cb-a6c5bd38839b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Language",
+			"item": [
+				{
+					"name": "Get All Languages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/language/index?properties=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"language",
+								"index"
+							],
+							"query": [
+								{
+									"key": "properties",
+									"value": "1",
+									"description": "Optional"
+								},
+								{
+									"key": "deleted",
+									"value": "1",
+									"description": "Optional",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all application languages"
+					},
+					"response": []
+				},
+				{
+					"name": "Store A Language",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "French",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "Forgien",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/language/store",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"language",
+								"store"
+							]
+						},
+						"description": "Create a new language for the application"
+					},
+					"response": []
+				},
+				{
+					"name": "Show A Language",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/language/show?id=23",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"language",
+								"show"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "23",
+									"description": "Required"
+								}
+							]
+						},
+						"description": "Show a specific language"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit A Language",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "23",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Igbo",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "Local",
+									"description": "Optional",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/language/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"language",
+								"update"
+							]
+						},
+						"description": "Edit language details"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete A Language",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "22",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/language/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"language",
+								"delete"
+							]
+						},
+						"description": "Delete a language"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Language Model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/language/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"language",
+								"test"
+							]
+						},
+						"description": "Test if the language model is responsive"
+					},
+					"response": []
+				}
+			],
+			"description": "Manage Language Listing",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c128e5d7-5127-4477-9ef0-2ea53d8bf48c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "a2c96e6d-7dc7-4e90-8bdd-a1d2a274cce5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Get All Profiles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/profile/index?properties=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"index"
+							],
+							"query": [
+								{
+									"key": "properties",
+									"value": "1",
+									"description": "Optional"
+								},
+								{
+									"key": "deleted",
+									"value": "1",
+									"description": "Optional",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all application users profiles"
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Profiles",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "160b39c4-005b-4560-ae74-791e04403b4f",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_name",
+									"value": "blue",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "user_email",
+									"value": "blue@gmail.com",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "ip_address_current",
+									"value": "127.0.0.1",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "phone",
+									"value": "09034344343",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "gender",
+									"value": "1",
+									"description": "Optional (1 is male, 2 is female, 9 is unknown)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "job_categories[]",
+									"value": "general labour",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "job_categories[]",
+									"value": "general labour",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "job_categories[]",
+									"value": "general labour",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "educational_qualifications[]",
+									"value": "SSCE (WAEC)",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "educational_qualifications[]",
+									"value": "SSCE (WAEC)",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "educational_qualifications[]",
+									"value": "SSCE (WAEC)",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "languages[]",
+									"value": "english",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "languages[]",
+									"value": "english",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "birth_date",
+									"value": "0000-01-11",
+									"description": "Optional (0000-month-date)  (0000-m-d)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "birth_year",
+									"value": "2018",
+									"description": "Optional (year) (Y)",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "address",
+									"value": "",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "city",
+									"value": "",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "state",
+									"value": "",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "country",
+									"value": "",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "zip",
+									"value": "",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "first_name",
+									"value": "",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "last_name",
+									"value": "",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "middle_name",
+									"value": "",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "social_security_number",
+									"value": "",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_details_verified",
+									"value": "true",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "total_actions",
+									"value": "",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "total_votes",
+									"value": "",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_rating",
+									"value": "",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_standing",
+									"value": "",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "additional_details",
+									"value": "Anything of intrest",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/profile/filter/index",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"filter",
+								"index"
+							]
+						},
+						"description": "Filter profiles (at least one parameter required)"
+					},
+					"response": []
+				},
+				{
+					"name": "Search Profiles",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "search",
+									"value": "blue",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/profile/search/index",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"search",
+								"index"
+							]
+						},
+						"description": "Search for a profile by their details"
+					},
+					"response": []
+				},
+				{
+					"name": "Store A Profile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ip_address_current",
+									"value": "127.0.0.1",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "09034344343",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "1",
+									"description": "Optional (1 is male, 2 is female, 9 is unknown)",
+									"type": "text"
+								},
+								{
+									"key": "job_categories[]",
+									"value": "general labour",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "job_categories[]",
+									"value": "general labour",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "job_categories[]",
+									"value": "general labour",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "educational_qualifications[]",
+									"value": "SSCE (WAEC)",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "educational_qualifications[]",
+									"value": "SSCE (WAEC)",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "educational_qualifications[]",
+									"value": "SSCE (WAEC)",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "languages[]",
+									"value": "english",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "languages[]",
+									"value": "english",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "birth_date",
+									"value": "0000-03-22",
+									"description": "Optional (0000-month-date)  (0000-m-d)",
+									"type": "text"
+								},
+								{
+									"key": "birth_year",
+									"value": "2020",
+									"description": "Optional (year) (Y)",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "8291 East Colonial St. Dacula, GA 30019",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "Atlanta East",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "Atlanta",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "United States Of America",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "zip",
+									"value": "30019",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "John",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Tomas",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "middle_name",
+									"value": "john",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "social_security_number",
+									"value": "94838488347383",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "additional_details",
+									"value": "Anything of intrest",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "portraits[]",
+									"value": "data:image/jpeg;base64,/9j/4AAQo....",
+									"description": "Accepts Only 'jpg','jpeg','png','gif','bmp'  (Optional) Max:1",
+									"type": "text"
+								},
+								{
+									"key": "photos[]",
+									"description": "Accepts Only 'jpg','jpeg','png','gif','bmp'  (Optional) Max:1",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/profile/store",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"store"
+							]
+						},
+						"description": "Create a new profile for a user"
+					},
+					"response": []
+				},
+				{
+					"name": "Show A Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/profile/show?user_id=160b39c4-005b-4560-ae74-791e04403b4f",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"show"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "160b39c4-005b-4560-ae74-791e04403b4f",
+									"description": "Required"
+								}
+							]
+						},
+						"description": "Show a specific profile"
+					},
+					"response": []
+				},
+				{
+					"name": "Show My Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/profile/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"me"
+							]
+						},
+						"description": "Show a logged in user profile"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit A Profile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "160b39c4-005b-4560-ae74-791e04403b4f",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "ip_address_current",
+									"value": "234.655.455.34",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "09034344343",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "1",
+									"description": "Optional (1 is male, 2 is female, 9 is unknown)",
+									"type": "text"
+								},
+								{
+									"key": "job_categories[]",
+									"value": "general labour",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "job_categories[]",
+									"value": "general labour",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "job_categories[]",
+									"value": "general labour",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "educational_qualifications[]",
+									"value": "SSCE (WAEC)",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "educational_qualifications[]",
+									"value": "SSCE (WAEC)",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "educational_qualifications[]",
+									"value": "SSCE (WAEC)",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "languages[]",
+									"value": "english",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "languages[]",
+									"value": "english",
+									"description": "Optional (0000-month-date)  (0000-m-d)",
+									"type": "text"
+								},
+								{
+									"key": "birth_date",
+									"value": "0000-03-22",
+									"description": "Optional (year) (Y)",
+									"type": "text"
+								},
+								{
+									"key": "birth_year",
+									"value": "2020",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "8291 East Colonial St. Dacula, GA 30019",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "Atlanta East",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "Atlanta",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "United States Of America",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "zip",
+									"value": "30019",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "John",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Tomas",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "middle_name",
+									"value": "Bull",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "social_security_number",
+									"value": "94838488347383",
+									"description": "Optional (year-month-date)  (y-m-d)",
+									"type": "text"
+								},
+								{
+									"key": "additional_details",
+									"value": "Anything of interest",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "portraits[]",
+									"value": "data:image/jpeg;base64,/9j/4AAQo....",
+									"description": "Accepts Only 'jpg','jpeg','png','gif','bmp'  (Optional) Max:1",
+									"type": "text"
+								},
+								{
+									"key": "photos[]",
+									"description": "Accepts Only 'jpg','jpeg','png','gif','bmp'  (Optional) Max:1",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/profile/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"update"
+							]
+						},
+						"description": "Edit a user profile details"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete A Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "78664d01-d4b9-483f-b87c-939cd164234c",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/profile/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"delete"
+							]
+						},
+						"description": "Delete a Profile"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Profile Model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/profile/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"profile",
+								"test"
+							]
+						},
+						"description": "Test if the profile model is responsive"
+					},
+					"response": []
+				}
+			],
+			"description": "Manage User Profiles",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e7e477f2-4512-404d-af47-82fa41b948a1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "31b49d40-4d12-40e6-8d17-ec436e1093ad",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Vote",
+			"item": [
+				{
+					"name": "Get All Votes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/vote/index?properties=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"vote",
+								"index"
+							],
+							"query": [
+								{
+									"key": "properties",
+									"value": "1",
+									"description": "Optional"
+								},
+								{
+									"key": "deleted",
+									"value": "1",
+									"description": "Optional",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all application available votes"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Votes Aggregate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/vote/aggregate",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"vote",
+								"aggregate"
+							],
+							"query": [
+								{
+									"key": "supporter_id",
+									"value": "a9ac4a7f-f5fa-4224-bf46-02596fa1c8ae",
+									"description": "Optional",
+									"disabled": true
+								},
+								{
+									"key": "candidate_id",
+									"value": "4eb6c505-4c7c-418d-a793-6fc0546b24b3",
+									"description": "Optional",
+									"disabled": true
+								},
+								{
+									"key": "activity_id",
+									"value": "EQR",
+									"description": "Optional",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all application available votes (At least one parameter is required)"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Vote Model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/vote/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"vote",
+								"test"
+							]
+						},
+						"description": "Test if the vote model is responsive"
+					},
+					"response": []
+				},
+				{
+					"name": "Show A Vote",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/vote/show?vote_id=3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"vote",
+								"show"
+							],
+							"query": [
+								{
+									"key": "vote_id",
+									"value": "3",
+									"description": "Required"
+								}
+							]
+						},
+						"description": "Get a single application available vote"
+					},
+					"response": []
+				},
+				{
+					"name": "Store A Vote",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "activity_id",
+									"value": "BDV",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "activity_name",
+									"value": "Company Job Post",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "points",
+									"value": "0",
+									"description": "Required (Integer only, Negative values are allowed)",
+									"type": "text"
+								},
+								{
+									"key": "candidate_id",
+									"value": "4eb6c505-4c7c-418d-a793-6fc0546b24b3",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "candidate_name",
+									"value": "black",
+									"description": "Optional",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/vote/store",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"vote",
+								"store"
+							]
+						},
+						"description": "Create a new application vote"
+					},
+					"response": []
+				},
+				{
+					"name": "Rate A User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "activity_id",
+									"value": "id-based-on-an-activity-like-job-id",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "activity_name",
+									"value": "Rate Worker",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "points",
+									"value": "1",
+									"description": "Required (Integer only, Negative values are allowed)",
+									"type": "text"
+								},
+								{
+									"key": "candidate_id",
+									"value": "4eb6c505-4c7c-418d-a793-6fc0546b24b3",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "candidate_name",
+									"value": "black",
+									"description": "Optional",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/vote/rate/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"vote",
+								"rate",
+								"user"
+							]
+						},
+						"description": "Rate an application user"
+					},
+					"response": []
+				},
+				{
+					"name": "Check if rated",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "activity_id",
+									"value": "id-based-on-an-activity-like-job-id",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/vote/rate/check",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"vote",
+								"rate",
+								"check"
+							]
+						},
+						"description": "Check if an application activity has been rated by user"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit A Vote",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "vote_id",
+									"value": "1",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "points",
+									"value": "-3",
+									"description": "Required (Integer only, Negative values are allowed)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/vote/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"vote",
+								"update"
+							]
+						},
+						"description": "Update an application vote"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete A Vote",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "vote_id",
+									"value": "5",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/vote/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"vote",
+								"delete"
+							]
+						},
+						"description": "Delete an application vote"
+					},
+					"response": []
+				}
+			],
+			"description": "Manage User Votes For The Application",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "cf27b197-d6a5-4963-a910-42557d8af924",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "41c8c998-d1b3-4816-b25b-8e764f51c588",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Note",
+			"item": [
+				{
+					"name": "Get All Notes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/note/index?properties=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"note",
+								"index"
+							],
+							"query": [
+								{
+									"key": "properties",
+									"value": "1",
+									"description": "Optional"
+								},
+								{
+									"key": "deleted",
+									"value": "1",
+									"description": "Optional",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all application notes"
+					},
+					"response": []
+				},
+				{
+					"name": "Store A Note",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "English",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "page1",
+									"value": "A very long text",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "page2",
+									"value": "A very very long text",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "page3",
+									"value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+									"description": "Optional",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/note/store",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"note",
+								"store"
+							]
+						},
+						"description": "Create a new note for the application"
+					},
+					"response": []
+				},
+				{
+					"name": "Show A Note",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/note/show?title=French",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"note",
+								"show"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2",
+									"description": "Required  (if no title param)",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "French",
+									"description": "Required  (if no id param)"
+								}
+							]
+						},
+						"description": "Show a specific note (only one parameter is allowed)"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit A Note",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "French",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "page1",
+									"value": "A very long text",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "page2",
+									"value": "A very very long text also",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "page3",
+									"value": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/note/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"note",
+								"update"
+							]
+						},
+						"description": "Edit Note pages"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete A Note",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/note/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"note",
+								"delete"
+							]
+						},
+						"description": "Delete a note"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Note Model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/note/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"note",
+								"test"
+							]
+						},
+						"description": "Test if the note model is responsive"
+					},
+					"response": []
+				}
+			],
+			"description": "Manage Note Listing",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b0bf1b79-0e9c-47a5-ac1f-db7327ec06ac",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2e5e845-f20e-461c-87e6-0297bf39f0c2",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Wallet",
+			"item": [
+				{
+					"name": "Get All Wallets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/wallet/index?properties=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"wallet",
+								"index"
+							],
+							"query": [
+								{
+									"key": "properties",
+									"value": "1",
+									"description": "Optional"
+								},
+								{
+									"key": "deleted",
+									"value": "1",
+									"description": "Optional",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all application wallets"
+					},
+					"response": []
+				},
+				{
+					"name": "Store A Wallet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "currency_code",
+									"value": "NGN",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "currency_name",
+									"value": "Nigerian Naira",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/wallet/store",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"wallet",
+								"store"
+							]
+						},
+						"description": "Create a new wallet for the application user"
+					},
+					"response": []
+				},
+				{
+					"name": "Show A Wallet",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/wallet/show?user_id=160b39c4-005b-4560-ae74-791e04403b4f",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"wallet",
+								"show"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "160b39c4-005b-4560-ae74-791e04403b4f",
+									"description": "Required"
+								}
+							]
+						},
+						"description": "Show a specific wallet"
+					},
+					"response": []
+				},
+				{
+					"name": "Show My Wallet",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/wallet/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"wallet",
+								"me"
+							]
+						},
+						"description": "Show your wallet"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete A Wallet",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/wallet/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"wallet",
+								"delete"
+							]
+						},
+						"description": "Delete a wallet"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Wallet Model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/wallet/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"wallet",
+								"test"
+							]
+						},
+						"description": "Test if the wallet model is responsive"
+					},
+					"response": []
+				},
+				{
+					"name": "Store A Card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "card_number",
+									"value": "4948583893943",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "expiration_date",
+									"value": "2020-11",
+									"description": "Required (Y-m) (Year-month)",
+									"type": "text"
+								},
+								{
+									"key": "cvv",
+									"value": "123",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/wallet/card/store",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"wallet",
+								"card",
+								"store"
+							]
+						},
+						"description": "Store a card in wallet"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete A Card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "5ec451eee317c",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/wallet/card/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"wallet",
+								"card",
+								"delete"
+							]
+						},
+						"description": "Delete a card from wallet"
+					},
+					"response": []
+				},
+				{
+					"name": "Store An Account Detail",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "John",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Mike",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "middle_name",
+									"value": "Bull",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "account_number",
+									"value": "4948583893943",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "bank_name",
+									"value": "United Bank Of Nigeria",
+									"description": "Required",
+									"type": "text"
+								},
+								{
+									"key": "account_type",
+									"value": "Savings",
+									"description": "Optional",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/wallet/bank/store",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"wallet",
+								"bank",
+								"store"
+							]
+						},
+						"description": "Store an account detail in wallet"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete An Account Detail",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "5ec454ea7021d",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/wallet/bank/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"wallet",
+								"bank",
+								"delete"
+							]
+						},
+						"description": "Delete an account detail from wallet"
+					},
+					"response": []
+				},
+				{
+					"name": "Transfer To Wallet",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "amount",
+									"value": "1000",
+									"description": "Required (Integer Only)",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "a9f078ca-0e15-4ea6-8253-8d4b4aa1c2da",
+									"description": "Required (Reciver Id)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/wallet/transfer",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"wallet",
+								"transfer"
+							]
+						},
+						"description": "Transfer to a wallet from your wallet"
+					},
+					"response": []
+				},
+				{
+					"name": "Deposit To Wallet",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "amount",
+									"value": "1000",
+									"description": "Required (Integer Only)",
+									"type": "text"
+								},
+								{
+									"key": "selected_card",
+									"value": "5ec451f69b60c",
+									"description": "Required (Card ID)",
+									"type": "text"
+								},
+								{
+									"key": "card_pin",
+									"value": "2345",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/wallet/deposit",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"wallet",
+								"deposit"
+							]
+						},
+						"description": "Deposit to a wallet from your card"
+					},
+					"response": []
+				},
+				{
+					"name": "Withdraw From Wallet",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "amount",
+									"value": "1000",
+									"description": "Required (Integer Only)",
+									"type": "text"
+								},
+								{
+									"key": "selected_bank",
+									"value": "5ec454f9bd696",
+									"description": "Required (Bank ID)",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/wallet/withdraw",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"wallet",
+								"withdraw"
+							]
+						},
+						"description": "Withdraw from a wallet to your account"
+					},
+					"response": []
+				}
+			],
+			"description": "Manage Note Listing",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ed0139f6-0bf8-42b9-b56e-f0f951c20ef7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "6bd252b4-dc55-4dfc-8772-e07d687b986a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "Get All Transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/transaction/index?properties=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"transaction",
+								"index"
+							],
+							"query": [
+								{
+									"key": "properties",
+									"value": "1",
+									"description": "Optional"
+								},
+								{
+									"key": "deleted",
+									"value": "1",
+									"description": "Optional",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all application transactions"
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Transactions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tx_id",
+									"value": "32210322-8314-4457-b2eb-997701d2812e",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "160b39c4-005b-4560-ae74-791e04403b4f",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "1000",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "point",
+									"value": "start",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "withdraw",
+									"description": "Optional (start or stop)",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "failure",
+									"type": "text"
+								},
+								{
+									"key": "process",
+									"value": "pending",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "participant",
+									"value": "card",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "information[]",
+									"value": "something",
+									"description": "Optional",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/transaction/filter/index",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"transaction",
+								"filter",
+								"index"
+							]
+						},
+						"description": "Filter transactions (at least one parameter required)"
+					},
+					"response": []
+				},
+				{
+					"name": "Search Transactions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "search",
+									"value": "bank",
+									"description": "Required",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/transaction/search/index",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"transaction",
+								"search",
+								"index"
+							]
+						},
+						"description": "Search for a transactions by their transactions details"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Incomplete",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/transaction/incomplete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"transaction",
+								"incomplete"
+							]
+						},
+						"description": "Get all application incomplete transactions"
+					},
+					"response": []
+				},
+				{
+					"name": "Show A Transaction",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/transaction/show?user_id=160b39c4-005b-4560-ae74-791e04403b4f",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"transaction",
+								"show"
+							],
+							"query": [
+								{
+									"key": "tx_id",
+									"value": "32210322-8314-4457-b2eb-997701d2812e",
+									"description": "Required",
+									"disabled": true
+								},
+								{
+									"key": "user_id",
+									"value": "160b39c4-005b-4560-ae74-791e04403b4f",
+									"description": "Required"
+								}
+							]
+						},
+						"description": "Show a specific transaction (only one param is allowed)"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Transaction Model",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/transaction/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"transaction",
+								"test"
+							]
+						},
+						"description": "Test if the transactions model is responsive"
+					},
+					"response": []
+				}
+			],
+			"description": "Manage Transaction Listing",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "53fe97f6-bc34-4254-8d0f-6e347ef67160",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1548bc9a-e82a-4bb7-ae13-497eccc3859b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Test",
+			"item": [
+				{
+					"name": "Test A",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/test/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"test",
+								"test"
+							]
+						},
+						"description": "Quick test a specific function"
+					},
+					"response": []
+				},
+				{
+					"name": "Test B",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/test/test",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"test",
+								"test"
+							]
+						},
+						"description": "Quick test a specific function"
+					},
+					"response": []
+				}
+			],
+			"description": "Run application tests",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "391356f4-b612-43af-9ea5-d33d9703d672",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "a4737f71-8881-4271-86f0-0c11828607e0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Region",
+			"item": [
+				{
+					"name": "Get All Earth Regions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/region/earth/index?category=countries",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"region",
+								"earth",
+								"index"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "countries",
+									"description": "Accepts Only 'countries','states','cities', (Required)"
+								},
+								{
+									"key": "properties",
+									"value": "1",
+									"description": "Optional",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all earth regions"
+					},
+					"response": []
+				},
+				{
+					"name": "Sort Earth Regions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "country_id",
+									"value": "160",
+									"description": "Required ('0' to get all)",
+									"type": "text"
+								},
+								{
+									"key": "state_id",
+									"value": "2647",
+									"description": "Optional",
+									"type": "text"
+								},
+								{
+									"key": "city_id",
+									"value": "30691",
+									"description": "Optional",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/region/earth/sort/index",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"region",
+								"earth",
+								"sort",
+								"index"
+							]
+						},
+						"description": "Sort regions (at least one parameter required)"
+					},
+					"response": []
+				}
+			],
+			"description": "Get regions of earth",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b93ad7e2-00ea-4dff-bb62-905104b3bf6e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "fc4e7fe8-6cfd-4971-b157-f9b15268cf0e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "254381c7-b6ca-46c3-9ed5-bb0ec4e57c55",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "441462e3-d908-422f-a4db-ecf70dfa8120",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
