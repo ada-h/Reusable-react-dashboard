@@ -11,18 +11,22 @@ import UserProfile from './components/user/profile'
 import Posts from './components/posts/posts'
 import Tables from './components/tables/tables'
 import Forms from './components/forms/forms'
+import LoginPage from './components/Auth/LoginPage'
+import AuthPage from './components/Auth/AuthPage'
 
 const Router = () =>{
     return(
         <BrowserRouter>
             <div className = 'h-100'>
                 <div className="container-fluid">
+                
                     <div className="row">
                         <Sidenav/>
                         <main className="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
                             <div className="main-navbar sticky-top bg-white">
                                 <Mainnav/>
-                            </div>                                
+                            </div>
+                           
                             <div className="main-content-container container-fluid px-4">
                                 <BreadCrumbs/>
                                     <Switch> 
@@ -32,9 +36,11 @@ const Router = () =>{
                                         <Route exact path = '/posts' component = {Posts}/>
                                         <Route exact path = '/tables' component = {Tables}/>
                                         <Route exact path = '/forms' component = {Forms}/>
+                                        <Route exact path = '/login' component = {LoginPage} />   
                                         <Route path = '*' component = {Error}/>  
                                     </Switch>
-                            </div>   
+                            </div>
+                            
                             <Footer/>     
                         </main>
                     </div>         
