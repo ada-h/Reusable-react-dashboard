@@ -1,8 +1,17 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import { connect } from 'react-redux';
+import { logout } from '../../redux/actions/ActiveAction';
 
 class Mainnav extends Component{
+  constructor(props){
+    super(props);
+
+  }
+
     render() {
+      const { auth } = this.props
+
       return (
         <nav className="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
           <form action="#" className="main-navbar__search w-100 d-none d-md-flex d-lg-flex">
@@ -63,8 +72,16 @@ class Mainnav extends Component{
                 <Link to= '' className="dropdown-item" href="add-new-post.html">
                   <i className="material-icons">note_add</i> Add New Post</Link>
                 <div className="dropdown-divider" />
-                <Link to= '' className="dropdown-item text-danger">
+                {
+                  !auth.isAuthenticated && (
+                    <Link to= '/login' className="dropdown-item text-success"  >
+                  <i className="material-icons text-success"></i> Log in </Link>
+                  )
+                }
+                {auth.isAuthenticated && (
+                  <Link to= '/' className="dropdown-item text-danger" onClick={logout} >
                   <i className="material-icons text-danger"></i> Logout </Link>
+                )}
               </div>
             </li>
           </ul>
@@ -73,5 +90,9 @@ class Mainnav extends Component{
     }
 }
 
-export default Mainnav
-
+export default connect(
+  store => ({
+    auth: store.auth,
+  }),
+  { logout },
+)( Mainnav );
